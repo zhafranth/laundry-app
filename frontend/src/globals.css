@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* ===== LaundryKu Design Tokens (Tailwind v4 @theme) ===== */
+@theme {
+  /* --- Primary (Cyan) --- */
+  --color-primary-100: #e0f7fa;
+  --color-primary-300: #4dd0e1;
+  --color-primary-500: #00b4d8;
+  --color-primary-700: #0077b6;
+  --color-primary-900: #004e75;
+
+  /* --- Secondary (Amber) --- */
+  --color-secondary-100: #fff3d0;
+  --color-secondary-300: #ffd166;
+  --color-secondary-500: #ffb703;
+  --color-secondary-700: #e09600;
+  --color-secondary-900: #8b5e00;
+
+  /* --- Navy (Dark) --- */
+  --color-navy-950: #0b1d35;
+  --color-navy-800: #1a2d45;
+  --color-navy-600: #3d5068;
+
+  /* --- Gray (Neutral) --- */
+  --color-gray-400: #8899aa;
+  --color-gray-200: #c4cdd6;
+  --color-gray-100: #e8edf2;
+  --color-gray-50: #f5f7fa;
+
+  /* --- Semantic --- */
+  --color-success: #00c853;
+  --color-warning: #ff6b35;
+  --color-error: #ef2d56;
+  --color-info: #7c4dff;
+
+  /* --- Typography --- */
+  --font-heading: "Manrope", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+
+  /* --- Font Size Scale --- */
+  --text-display: 2.25rem; /* 36px */
+  --text-display--line-height: 2.75rem; /* 44px */
+  --text-h1: 1.75rem; /* 28px */
+  --text-h1--line-height: 2.25rem; /* 36px */
+  --text-h2: 1.375rem; /* 22px */
+  --text-h2--line-height: 1.75rem; /* 28px */
+  --text-h3: 1.125rem; /* 18px */
+  --text-h3--line-height: 1.5rem; /* 24px */
+  --text-body-l: 1rem; /* 16px */
+  --text-body-l--line-height: 1.5rem; /* 24px */
+  --text-body-m: 0.875rem; /* 14px */
+  --text-body-m--line-height: 1.25rem; /* 20px */
+  --text-caption: 0.75rem; /* 12px */
+  --text-caption--line-height: 1rem; /* 16px */
+  --text-overline: 0.6875rem; /* 11px */
+  --text-overline--line-height: 1rem; /* 16px */
+
+  /* --- Border Radius --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  /* --- Shadows (using navy as base) --- */
+  --shadow-sm: 0 1px 2px rgba(11, 29, 53, 0.06);
+  --shadow-md: 0 4px 12px rgba(11, 29, 53, 0.08);
+  --shadow-lg: 0 8px 24px rgba(11, 29, 53, 0.12);
+  --shadow-xl: 0 16px 48px rgba(11, 29, 53, 0.16);
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes spin-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 180, 216, 0.25);
+  }
+}
+@keyframes pin-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== Sidebar Layout Utilities ===== */
+.sidebar-expanded {
+  width: 256px;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-collapsed {
+  width: 72px;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-mobile-enter {
+  animation: slide-from-left 0.25s ease forwards;
+}
+.sidebar-backdrop {
+  animation: fade-in 0.15s ease forwards;
+}
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ===== Base Reset ===== */
+:root {
+  --background: #f5f7fa;
+  --foreground: #0b1d35;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
