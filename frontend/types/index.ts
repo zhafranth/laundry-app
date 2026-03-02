@@ -395,6 +395,26 @@ export interface PaymentHistory {
   createdAt: string;
 }
 
+// ===== Notification =====
+
+export type NotificationType =
+  | "order_new"
+  | "order_deadline"
+  | "stock_low"
+  | "expense_alert"
+  | "system";
+
+export interface Notification {
+  id: string;
+  outletId: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  isRead: boolean;
+  actionUrl: string | null;
+  createdAt: string;
+}
+
 // ===== Finance: Expense Summary =====
 
 export interface ExpenseSummary {

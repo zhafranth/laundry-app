@@ -1,13 +1,13 @@
-import { Bell, Menu, ChevronDown, LogOut, User } from "lucide-react";
+import { Menu, ChevronDown, LogOut, User } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/store";
 import { queryKeys } from "@/lib/query-keys";
 import { outletService } from "@/services/outlet";
 import { Avatar } from "@/components/ui/Avatar";
-import { Badge } from "@/components/ui/Badge";
 import { Dropdown } from "@/components/ui/Dropdown";
 import { useDisclosure } from "@/hooks/useDisclosure";
+import { NotificationDropdown } from "@/components/layout/NotificationDropdown";
 import type { DropdownItem } from "@/components/ui/Dropdown";
 
 interface HeaderProps {
@@ -139,38 +139,8 @@ export function Header({ onMobileMenuOpen }: HeaderProps) {
           {formatDate(new Date())}
         </div>
 
-        {/* Bell */}
-        <button
-          className="relative flex items-center justify-center rounded-[10px] transition-colors"
-          style={{
-            width: 36,
-            height: 36,
-            color: "#3D5068",
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-          }}
-          aria-label="Notifikasi"
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "#F5F7FA";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-          }}
-        >
-          <Bell size={19} />
-          {/* Unread dot placeholder — real count from API in F9 */}
-          <span
-            className="absolute top-1 right-1"
-            style={{
-              width: 7,
-              height: 7,
-              background: "#EF2D56",
-              borderRadius: "50%",
-              border: "1.5px solid white",
-            }}
-          />
-        </button>
+        {/* Bell + Notification Dropdown */}
+        <NotificationDropdown outletId={activeOutletId} />
 
         {/* Avatar + Dropdown */}
         <Dropdown
