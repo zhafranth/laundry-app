@@ -7,6 +7,7 @@ import appConfig from './config/app.config';
 import jwtConfig from './config/jwt.config';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PrismaModule } from './prisma/prisma.module';
     ]),
     ScheduleModule.forRoot(),
     PrismaModule,
+    AuthModule,
   ],
 })
 export class AppModule implements NestModule {

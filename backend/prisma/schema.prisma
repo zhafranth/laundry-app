@@ -117,6 +117,11 @@ model User {
   createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
 
+  verifyEmailToken     String?   @map("verify_email_token") @db.VarChar(64)
+  verifyEmailExpires   DateTime? @map("verify_email_expires") @db.Timestamptz
+  resetPasswordToken   String?   @map("reset_password_token") @db.VarChar(64)
+  resetPasswordExpires DateTime? @map("reset_password_expires") @db.Timestamptz
+
   outlets  Outlet[]
   payments Payment[]
 
