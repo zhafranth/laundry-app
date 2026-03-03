@@ -9,6 +9,7 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { OutletsModule } from './outlets/outlets.module';
+import { ServicesModule } from './services/services.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { OutletsModule } from './outlets/outlets.module';
     PrismaModule,
     AuthModule,
     OutletsModule,
+    ServicesModule,
   ],
 })
 export class AppModule implements NestModule {
