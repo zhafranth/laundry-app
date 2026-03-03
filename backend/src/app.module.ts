@@ -10,6 +10,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { OutletsModule } from './outlets/outlets.module';
 import { ServicesModule } from './services/services.module';
+import { StaffModule } from './staff/staff.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ServicesModule } from './services/services.module';
     AuthModule,
     OutletsModule,
     ServicesModule,
+    StaffModule,
   ],
 })
 export class AppModule implements NestModule {
