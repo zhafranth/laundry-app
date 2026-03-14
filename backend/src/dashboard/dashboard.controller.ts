@@ -3,9 +3,15 @@ import {
   Get,
   Param,
   ParseUUIDPipe,
+  Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -35,5 +41,26 @@ export class DashboardController {
   @ApiOperation({ summary: 'Overview multi-outlet (owner only)' })
   getOverview(@GetUser() user: AuthUser) {
     return this.dashboardService.getOverview(user.userId);
+  }
+
+  @Get('outlets/:id/reports/health-score')
+  @Roles('owner')
+  @UseGuards(OutletAccessGuard)
+  @ApiOperation({ summary: 'Health score detail + trend (Pro only)' })
+  @ApiQuery({
+    name: 'days',
+    required: false,
+    type: Number,
+    description: 'Jumlah hari trend (default 30, max 90)',
+  })
+  getHealthScore(
+    @Param('id', ParseUUIDPipe) outletId: string,
+    @Query('days') days?: string,
+  ) {
+    const trendDays = Math.min(
+      Math.max(parseInt(days ?? '30', 10) || 30, 7),
+      90,
+    );
+    return this.dashboardService.getHealthScore(outletId, trendDays);
   }
 }
